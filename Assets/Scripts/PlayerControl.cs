@@ -1,0 +1,19 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControl : MonoBehaviour
+{
+
+    // Use this for initialization
+    void Start()
+    {
+        // if (Input.GetButtonDown("Horizontal")) jump = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+}
