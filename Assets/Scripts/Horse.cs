@@ -8,7 +8,7 @@ public class Horse : MonoBehaviour
 
     void Start()
     {
-        speed = Random.Range(1.0f, 3.0f);
+        speed = 2.0f;
     }
 
     void Update()

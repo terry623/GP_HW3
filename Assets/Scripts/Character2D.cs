@@ -19,6 +19,7 @@ public class Character2D : MonoBehaviour
 
     public float health;
     public GameObject boss;
+    public GameObject deadCanvas;
 
     void Awake()
     {
@@ -72,7 +73,8 @@ public class Character2D : MonoBehaviour
 
     void DamageToEnemy()
     {
-        boss.GetComponent<Enemy>().GetDamaged(100);
+        if (boss)
+            boss.GetComponent<Enemy>().GetDamaged(100);
     }
 
     void Flip()
@@ -93,5 +95,14 @@ public class Character2D : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
             inRange = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Horse"))
+        {
+            deadCanvas.GetComponent<Canvas>().enabled = true;
+            Time.timeScale = 0;
+        }
     }
 }
