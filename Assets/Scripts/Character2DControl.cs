@@ -6,6 +6,7 @@ public class Character2DControl : MonoBehaviour
 {
     private Character2D character;
     private bool jump;
+    private bool attack;
     private float movingSpeed;
 
     void Start()
@@ -16,6 +17,7 @@ public class Character2DControl : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Jump")) jump = true;
+        if (Input.GetButton("Fire1")) character.Attack();
     }
 
     void FixedUpdate()

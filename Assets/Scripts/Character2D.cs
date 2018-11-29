@@ -33,6 +33,7 @@ public class Character2D : MonoBehaviour
     {
         onGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
         anim.SetBool("onGround", onGround);
+        anim.SetBool("Attack", false);
     }
 
     public void Move(float movingSpeed, bool jump)
@@ -51,6 +52,11 @@ public class Character2D : MonoBehaviour
         }
     }
 
+    public void Attack()
+    {
+        anim.SetBool("Attack", true);
+    }
+
     void Flip()
     {
         facingRight = !facingRight;
@@ -58,4 +64,5 @@ public class Character2D : MonoBehaviour
         characterScale.x *= -1;
         transform.localScale = characterScale;
     }
+
 }
