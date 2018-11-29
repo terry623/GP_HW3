@@ -20,6 +20,7 @@ public class Character2D : MonoBehaviour
     public float health;
     public GameObject boss;
     public GameObject deadCanvas;
+    public GameObject gameControl;
 
     void Awake()
     {
@@ -102,7 +103,7 @@ public class Character2D : MonoBehaviour
         if (other.collider.CompareTag("Horse"))
         {
             deadCanvas.GetComponent<Canvas>().enabled = true;
-            Time.timeScale = 0;
+            gameControl.GetComponent<Hearts>().costHealth();
         }
     }
 }
