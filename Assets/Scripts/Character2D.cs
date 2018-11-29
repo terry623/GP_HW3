@@ -8,13 +8,17 @@ public class Character2D : MonoBehaviour
     private float jumpForce = 200.0f;
     private bool airControl = true;
     bool facingRight;
+    bool inRange;
+    float lastDamageTime;
 
     public LayerMask groundLayer;
     Transform groundCheck;
     float groundRadius;
     bool onGround;
-
     Animator anim;
+
+    public float health;
+    public GameObject boss;
 
     void Awake()
     {
@@ -27,6 +31,8 @@ public class Character2D : MonoBehaviour
         facingRight = true;
         groundRadius = 0.1f;
         onGround = false;
+        inRange = false;
+        lastDamageTime = Time.time;
     }
 
     void FixedUpdate()
@@ -59,6 +65,14 @@ public class Character2D : MonoBehaviour
             anim.SetBool("Attack", true);
         else
             anim.SetBool("JumpAttack", true);
+
+        if (inRange && Time.time > lastDamageTime + 0.1f) DamageToEnemy();
+        lastDamageTime = Time.time;
+    }
+
+    void DamageToEnemy()
+    {
+        boss.GetComponent<Enemy>().GetDamaged(100);
     }
 
     void Flip()
@@ -69,4 +83,15 @@ public class Character2D : MonoBehaviour
         transform.localScale = characterScale;
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+            inRange = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+            inRange = false;
+    }
 }
