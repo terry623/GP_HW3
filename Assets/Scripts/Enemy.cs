@@ -11,6 +11,13 @@ public class Enemy : MonoBehaviour
     bool facingLeft = true;
     Animator anim;
 
+    private float minimum = 0.0f;
+    private float maximum = 1f;
+    private float duration = 2.0f;
+    private float startTime;
+    private SpriteRenderer sprite;
+    private bool die = false;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -19,10 +26,17 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         health = 2000;
+        startTime = Time.time;
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
+        float t = (Time.time - startTime) / duration;
+        if (die)
+            sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(maximum, minimum, t));
+        else
+            sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(minimum, maximum, t));
     }
 
     void FixedUpdate()
@@ -39,7 +53,10 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health < 0)
         {
-            Invoke("Fade", 2.0f);
+            die = true;
+            startTime = Time.time;
+            anim.SetBool("Attack", false);
+            Invoke("Fade", 4.0f);
         }
     }
 
