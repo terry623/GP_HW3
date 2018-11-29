@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class Enemy : MonoBehaviour
     public GameObject player;
     float speed = 0.5f;
     bool facingLeft = true;
+    Animator anim;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Start()
     {
@@ -30,6 +37,22 @@ public class Enemy : MonoBehaviour
     public void GetDamaged(int damage)
     {
         health -= damage;
+        if (health < 0)
+        {
+            Invoke("Fade", 2.0f);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+            anim.SetBool("Attack", true);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+            anim.SetBool("Attack", false);
     }
 
     void Flip()
@@ -38,5 +61,10 @@ public class Enemy : MonoBehaviour
         Vector3 characterScale = transform.localScale;
         characterScale.x *= -1;
         transform.localScale = characterScale;
+    }
+
+    void Fade()
+    {
+        Initiate.Fade("Menu", Color.black, 1.0f);
     }
 }
