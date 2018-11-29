@@ -32,16 +32,11 @@ public class Character2D : MonoBehaviour
     void FixedUpdate()
     {
         onGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
-        print(onGround);
         anim.SetBool("onGround", onGround);
     }
 
     public void Move(float movingSpeed, bool jump)
     {
-        // print("onGround: " + onGround);
-        if (jump)
-            print("jump: " + jump);
-
         if (onGround || airControl)
         {
             anim.SetFloat("Speed", Mathf.Abs(movingSpeed));
