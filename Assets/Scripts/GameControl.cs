@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour
 {
     public GameObject horse;
-    private int limitNum = 5;
+    private int limitNum = 15;
     int count = 0;
 
     void Start()

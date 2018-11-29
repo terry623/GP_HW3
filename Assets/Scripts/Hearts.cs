@@ -8,6 +8,7 @@ public class Hearts : MonoBehaviour
     public GameObject heart2;
     public GameObject heart3;
     List<GameObject> heartList = new List<GameObject>();
+    AudioSource dieSound;
     public GameObject dead;
 
     void Start()
@@ -15,6 +16,7 @@ public class Hearts : MonoBehaviour
         heartList.Add(heart1);
         heartList.Add(heart2);
         heartList.Add(heart3);
+        dieSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -24,6 +26,7 @@ public class Hearts : MonoBehaviour
 
     public void costHealth()
     {
+        dieSound.Play();
         int last = heartList.Count - 1;
         GameObject obj = heartList[last];
         obj.SetActive(false);

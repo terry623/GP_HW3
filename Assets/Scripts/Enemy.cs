@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public float health;
     public GameObject player;
-    float speed = 0.5f;
+    float speed = 1.0f;
     bool facingLeft = true;
     Animator anim;
 
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        health = 2000;
+        health = 5000;
         startTime = Time.time;
         sprite = GetComponent<SpriteRenderer>();
     }

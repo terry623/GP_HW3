@@ -17,14 +17,11 @@ public class DeadCanvas : MonoBehaviour
 
     void Update()
     {
-        if (Input.anyKey)
+        if (Input.GetKey(KeyCode.R))
         {
+            Time.timeScale = 1;
             if (gameOver) SceneManager.LoadScene("Menu");
-            else
-            {
-                dead.enabled = false;
-                Time.timeScale = 1;
-            }
+            else dead.enabled = false;
         }
     }
 

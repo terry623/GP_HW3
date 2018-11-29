@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character2D : MonoBehaviour
 {
-    private float maxSpeed = 4.0f;
+    private float maxSpeed = 2.0f;
     private float jumpForce = 200.0f;
     private bool airControl = true;
     bool facingRight;
