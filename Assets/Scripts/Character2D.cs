@@ -32,25 +32,26 @@ public class Character2D : MonoBehaviour
     void FixedUpdate()
     {
         onGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
-
-        // change the character animation by onGround state
-        // anim.SetBool("onGround", onGround);
+        print(onGround);
+        anim.SetBool("onGround", onGround);
     }
 
     public void Move(float movingSpeed, bool jump)
     {
+        // print("onGround: " + onGround);
+        if (jump)
+            print("jump: " + jump);
+
         if (onGround || airControl)
         {
-            // change the character animation by moving speed
-            // anim.SetFloat("Speed", Mathf.Abs(movingSpeed));
-
+            anim.SetFloat("Speed", Mathf.Abs(movingSpeed));
             GetComponent<Rigidbody2D>().velocity = new Vector2(movingSpeed * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
             if (movingSpeed > 0 && !facingRight || movingSpeed < 0 && facingRight) Flip();
         }
 
         if (onGround && jump)
         {
-            // anim.SetBool("onGround", false);
+            anim.SetBool("onGround", false);
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, jumpForce));
         }
     }
