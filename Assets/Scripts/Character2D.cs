@@ -34,6 +34,7 @@ public class Character2D : MonoBehaviour
         onGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
         anim.SetBool("onGround", onGround);
         anim.SetBool("Attack", false);
+        anim.SetBool("JumpAttack", false);
     }
 
     public void Move(float movingSpeed, bool jump)
@@ -54,7 +55,10 @@ public class Character2D : MonoBehaviour
 
     public void Attack()
     {
-        anim.SetBool("Attack", true);
+        if (onGround)
+            anim.SetBool("Attack", true);
+        else
+            anim.SetBool("JumpAttack", true);
     }
 
     void Flip()
