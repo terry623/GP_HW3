@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public float health;
     public GameObject player;
-    float movingSpeed = 0.5f;
-    bool facingRight = true;
+    float speed = 0.5f;
+    bool facingLeft = true;
 
     void Start()
     {
@@ -21,10 +21,10 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 target = player.transform.position + new Vector3(0.3f, 0.4f, 0);
-        transform.position = Vector2.MoveTowards(transform.position, target, movingSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         float direction = transform.position.x - player.transform.position.x;
-        if (direction > 0 && !facingRight || direction < 0 && facingRight) Flip();
+        if (direction > 0 && !facingLeft || direction < 0 && facingLeft) Flip();
     }
 
     public void GetDamaged(int damage)
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
     void Flip()
     {
-        facingRight = !facingRight;
+        facingLeft = !facingLeft;
         Vector3 characterScale = transform.localScale;
         characterScale.x *= -1;
         transform.localScale = characterScale;
