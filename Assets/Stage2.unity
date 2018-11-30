@@ -195,7 +195,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4411634851684522, guid: b9501798782f65642be56ad99595bb4f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.668
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: 4411634851684522, guid: b9501798782f65642be56ad99595bb4f, type: 2}
       propertyPath: m_LocalPosition.y
